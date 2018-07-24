@@ -1,2 +1,2 @@
 # Praat-scripts-for-drawing
-These scripts faciliate drawing pictures, for example waveforms or spectrograms with labelled segments, labelled pitch traces, or vowel formant plots
+Open each script to see basic instructions for use, and attribution. These scripts come with no guarantee of functionality.
