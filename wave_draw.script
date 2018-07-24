@@ -1,0 +1,36 @@
+
+
+
+##################################################################################################
+## This script draws a waveform (top) and textgrid (bottom), with 
+## boundaries overlaying the waveform. It requires a sound and associated 
+## textgrid in the objects list. The script only
+## runs when the sound object is selected to start with.
+##
+## Leendert Plug, February 2004.
+##################################################################################################
+
+form draw_picture_1
+      comment Time
+      real start 0
+      real end 0
+endform
+ 
+   name$ = selected$("Sound")
+
+   12
+   Times
+   Line width... 0.5
+   Erase all
+
+   Viewport... 0 12 0 5
+   select TextGrid 'name$'
+   Line width... 0.5
+   Draw... 0 0 yes no yes
+
+   Viewport... 0 12 0.1 4
+   select Sound 'name$'
+   Draw... 'start' 'end' 0 0 0 no
+
+Viewport... 0 12 0 5   
+select Sound 'name$'
