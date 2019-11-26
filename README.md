@@ -3,6 +3,8 @@ Open each script to see basic instructions for use, and attribution. These scrip
 
 **pitch_draw.script** draws a pitch trace (top) and textgrid (bottom), with boundaries overlaying the pitch trace. 
 
+**spectral_slice_draw.script** draws a spectrogram and an LPC spectrum taken at a user-specified time point. The time point is marked on the spectrogram. All objects apart from an input sound file are generated automatically. 
+
 **spectro_draw.script** draws a spectrogram (top) and textgrid (bottom), with boundaries overlaying the spectrogram. The spectrogram is created automatically.
 
 **spectro_pitch_wave_draw.script** draws a spectrogram (top), pitch trace, waveform (middle) and textgrid (bottom), with boundaries overlaying everything. Spectrogram and pitch trace are generated automatically. 
