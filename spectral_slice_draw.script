@@ -64,7 +64,8 @@ Viewport... 0 4.5 3.5 6.5
 ## of the graph, you can increase the max amplitude by changing the 
 ## final zero to an appropriate value.
 
-Draw... 0 0 0 80 yes
+Draw... 0 0 0 0 yes
+Marks bottom every... 1 1000 yes yes yes
 Save as 600-dpi PNG file... 'directory$'\'savespectrum$'.png
 
 
