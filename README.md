@@ -1,9 +1,13 @@
 # Praat-scripts-for-drawing
 Open each script to see basic instructions for use, and attribution. These scripts come with no guarantee of functionality.
 
+**batch_wave_draw.script** draws a waveform (top) and textgrid (bottom), with boundaries overlaying the waveform, on a loop through a user-specified directory.
+
+**batch_wave_spectro_draw.script** draws a waveform (top), spectrogram (middle) and textgrid (bottom), with boundaries overlaying the waveform and spectrogram, on a loop through a user-specified directory. The spectrogram is created automatically.
+
 **pitch_draw.script** draws a pitch trace (top) and textgrid (bottom), with boundaries overlaying the pitch trace. 
 
-**spectral_slice_draw.script** draws a spectrogram and an LPC spectrum taken at a user-specified time point which is marked on the spectrogram. All objects apart from an input sound file are generated automatically. 
+**spectral_slice_draw.script** draws a spectrogram and a spectrum taken at a user-specified time point which is marked on the spectrogram. All objects apart from an input sound file are generated automatically. 
 
 **spectro_draw.script** draws a spectrogram (top) and textgrid (bottom), with boundaries overlaying the spectrogram. The spectrogram is created automatically.
 
