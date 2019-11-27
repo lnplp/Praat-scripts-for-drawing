@@ -1,0 +1,83 @@
+###############################################################################################
+## This script loops through a directory, drawing a segmented waveform and spectrogram for each 
+## sound file and writing the picture to a .png file in the same directory.
+##
+## Leendert Plug, November 2019
+###############################################################################################
+
+form Settings
+	comment Time
+	real start 0
+	real end 0
+	sentence Directory ...\
+	sentence Extension .wav
+endform
+
+## The next bit sets up the loop.
+
+Create Strings as file list... list 'directory$'*'extension$'
+number_of_files = Get number of strings
+
+for x from 1 to number_of_files
+     select Strings list
+     current_file$ = Get string... x
+     Read from file... 'directory$''current_file$'
+     name$ = selected$ ("Sound")
+     Read from file... 'directory$''name$'.TextGrid
+
+## The next bit generates the spectrogram, with default settings:
+
+   select Sound 'name$'
+   To Spectrogram... 0.005 5000 0.002 20 Gaussian
+
+## The next bit specifies basic drawing parameters. 
+
+   14
+   Helvetica
+   Line width... 1.5
+   Erase all
+
+## The next bit draws the waveform. Uncomment 'Draw inner box' if you 
+## want a box.
+
+   Viewport... 0 9 0.2 2.4
+   select Sound 'name$'
+   Draw... 'start' 'end' 0 0 0 yes
+##   Draw inner box
+
+## The next bit paints the spectrogram. To remove dotted horizontal lines,
+## change last 'yes' to 'no' in 'Marks left every'. To print only 0 and 5000 
+## Hz, change '1000' to '5000'.
+  
+   Viewport... 0 9 1.5 4.9
+   select Spectrogram 'name$'
+   Paint... 'start' 'end' 0 0 100 yes 50 6 0 no
+   Marks left every... 1 1000 yes yes yes
+   Draw inner box
+   Text left... yes Frequency (Hz)
+
+## The next bit draws the textgrid.
+
+   Viewport... 0 9 0 6
+   select TextGrid 'name$'
+   Line width... 3
+   Draw... 0 0 yes yes no
+
+## The next bit does the saving:
+
+Viewport... 0 9 0 6  
+Save as 600-dpi PNG file... 'directory$''name$'.png
+
+## The next bit does some tidying up within the loop.
+
+select all
+     minus Strings list
+     Remove
+
+endfor
+
+## The next bit does some more tidying up outside of the loop.
+
+select Strings list
+Remove
+print Done.

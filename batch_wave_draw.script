@@ -1,0 +1,70 @@
+###############################################################################################
+## This script loops through a directory, drawing a segmented waveform for each sound file and 
+## writing the picture to a .png file in the same directory.
+##
+## Leendert Plug, November 2019
+###############################################################################################
+
+form Settings
+	comment Time
+	real start 0
+	real end 0
+	sentence Directory ...\
+	sentence Extension .wav
+endform
+
+## The next bit sets up the loop.
+
+Create Strings as file list... list 'directory$'*'extension$'
+number_of_files = Get number of strings
+
+for x from 1 to number_of_files
+     select Strings list
+     current_file$ = Get string... x
+     Read from file... 'directory$''current_file$'
+     name$ = selected$ ("Sound")
+     Read from file... 'directory$''name$'.TextGrid
+
+## The next bit specifies basic drawing parameters. 
+
+   14
+   Helvetica
+   Line width... 3
+   Solid line
+   Erase all
+
+## The next bit draws the textgrid.
+
+   Viewport... 0 12 0 4
+   select TextGrid 'name$'
+   Line width... 3
+   Solid line
+   Draw... 0 0 yes no no
+
+## The next bit draws the waveform. 
+
+   Viewport... 0 12 0.3 3
+   select Sound 'name$'
+   Draw... 'start' 'end' 0 0 0 no
+
+## The next bit does the saving. 
+
+Viewport... 0 12 0 4   
+Save as 600-dpi PNG file... 'directory$''name$'.png
+
+## The next bit does some tidying up within the loop.
+
+select all
+     minus Strings list
+     Remove
+
+endfor
+
+## The next bit does some more tidying up outside of the loop.
+
+select Strings list
+Remove
+print Done.
+
+
+
