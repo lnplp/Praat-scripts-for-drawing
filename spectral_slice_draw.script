@@ -40,13 +40,14 @@ Helvetica
 Line width... 1
 Erase all
 
-## The next bit paints the spectrogram and saves it.
+## The next bit paints the spectrogram.
 
 Paint... 0 0 0 0 100 no 50 4.5 0 yes
 Marks left every... 1 1000 yes yes yes
 One mark top... time no yes yes 'label$'
 
-## The next bit adds the formant tracks
+## The next bit adds the formant tracks if you have ticked 
+## accordingly in the form
 
 if speckleformants 
    select Sound 'object$'
@@ -56,6 +57,8 @@ if speckleformants
    Speckle... 0 0 5000 30 no
    Black
 endif
+
+## The next bit saves the spectrogram.
 
 Save as 600-dpi PNG file... 'directory$'\'savespectrogram$'.png
 
@@ -84,6 +87,9 @@ Viewport... 0 4.5 3.5 6.5
 
 Draw... 0 0 0 0 yes
 Marks bottom every... 1 1000 yes yes yes
+
+## The next bit saves the spectral slice. 
+
 Save as 600-dpi PNG file... 'directory$'\'savespectrum$'.png
 
 
