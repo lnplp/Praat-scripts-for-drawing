@@ -13,6 +13,7 @@
 form Settings
 sentence Label cursor
 positive Time 0.815
+boolean Speckleformants 1
 sentence Directory ...\
 sentence Savespectrogram spectrogram
 sentence Savespectrum spectrum
@@ -44,6 +45,18 @@ Erase all
 Paint... 0 0 0 0 100 no 50 4.5 0 yes
 Marks left every... 1 1000 yes yes yes
 One mark top... time no yes yes 'label$'
+
+## The next bit adds the formant tracks
+
+if speckleformants 
+   select Sound 'object$'
+   To Formant (burg)... 0 5 5000 0.025 50
+   Speckle size... 1
+   Magenta
+   Speckle... 0 0 5000 30 no
+   Black
+endif
+
 Save as 600-dpi PNG file... 'directory$'\'savespectrogram$'.png
 
 ## The next bit downsamples the sound file to allow for LPC 
