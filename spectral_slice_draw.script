@@ -25,7 +25,7 @@ endform
 ## the second line.
 
 object$ = selected$ ("Sound")
-Write to WAV file... 'directory$'\'savesound$'.wav
+Write to WAV file... 'directory$'\'object$'_'savesound$'.wav
 
 ## The next bit creates the spectrogram. 
 
@@ -60,7 +60,7 @@ endif
 
 ## The next bit saves the spectrogram.
 
-Save as 600-dpi PNG file... 'directory$'\'savespectrogram$'.png
+Save as 600-dpi PNG file... 'directory$'\'object$'_'savespectrogram$'.png
 
 ## The next bit downsamples the sound file to allow for LPC 
 ## analysis (5 formants up to 5000 Hz, downsample to 10000). 
