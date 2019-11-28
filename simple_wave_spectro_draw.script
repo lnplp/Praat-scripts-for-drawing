@@ -1,0 +1,98 @@
+#########################################################################
+## This script draws a simple waveform, a simple spectrogram, with or 
+## without speckled formant tracks, and both together. It saves all
+## three output pictures.
+##
+## Leendert Plug, November 2019
+#########################################################################
+
+   form Settings
+   boolean Speckleformants 1
+   sentence Directory C:\Users\leend\Desktop\Leendert\spectrum exercise\test\
+   sentence Savewaveform waveform
+   sentence Savespectrogram spectrogram
+   sentence Saveboth wavespectro
+   sentence Savesound sound
+   endform
+
+## The next bit saves the sound file. This is useful if you have
+## just recorded it. If using a stored sound file you can comment
+## the second line.
+
+   object$ = selected$ ("Sound")
+   Write to WAV file... 'directory$'\'object$'_'savesound$'.wav
+
+## The next bit creates the spectrogram. 
+
+   To Spectrogram... 0.005 5000 0.002 20 Gaussian
+
+## The next bit creates the formant object if you want to 
+## speckle formants on the spectrogram.
+
+if speckleformants 
+   select Sound 'object$'
+   To Formant (burg)... 0 5 5000 0.025 50
+endif
+
+## The next bit prepares the picture window and specifies basic
+## drawing parameters.
+
+   Erase all
+   14
+   Helvetica
+ 
+## The next bit draws the waveform and saves it. 
+
+   select Sound 'object$'
+   Viewport... 0 5.5 0 2
+   Line width... 1
+   Draw... 0 0 0 0 yes 
+   Draw inner box
+   Save as 600-dpi PNG file... 'directory$'\'object$'_'savewaveform$'.png
+   Erase all
+
+## The next bit paints the spectrogram and saves it. 
+
+   select Spectrogram 'object$'
+   Viewport... 0 5.5 0 3.5
+   Paint... 0 0 0 0 100 no 50 4.5 0 yes
+   Marks left every... 1 1000 yes yes yes
+   if speckleformants 
+      select Formant 'object$'
+      Speckle size... 1
+      Magenta
+      Speckle... 0 0 5000 30 no
+      Black
+   endif
+   Save as 600-dpi PNG file... 'directory$'\'object$'_'savespectrogram$'.png
+   Erase all
+
+## The next bit draws the waveform and spectrogram together and saves.
+
+   select Sound 'object$'
+   Viewport... 0 5.5 0 2
+   Line width... 1
+   Draw... 0 0 0 0 no
+   Draw inner box
+   select Spectrogram 'object$'
+   Viewport... 0 5.5 1 3.5
+   Paint... 0 0 0 0 100 no 50 4.5 0 yes
+   Marks left every... 1 5000 yes yes yes
+   if speckleformants 
+      select Formant 'object$'
+      Speckle size... 1
+      Magenta
+      Speckle... 0 0 5000 30 no
+      Black
+   endif
+   Viewport... 0 5.5 0 3.5
+   Save as 600-dpi PNG file... 'directory$'\'object$'_'saveboth$'.png
+
+## The next bit tidies up.
+
+select all
+minus Sound 'object$'
+Remove
+  
+
+
