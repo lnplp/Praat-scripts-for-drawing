@@ -9,7 +9,7 @@ Open each script to see basic instructions for use, and attribution. These scrip
 
 **spectral_slice_draw.script** draws a spectrogram and a spectrum taken at a user-specified time point which is marked on the spectrogram. All objects apart from an input sound file are generated automatically. 
 
-**spectro_pitch_wave_draw.script** draws a spectrogram (top), pitch trace, waveform (middle) and textgrid (bottom), with boundaries overlaying everything. Spectrogram and pitch trace are generated automatically. 
+**simple_pitch_draw.script** draws a waveform (top), spectrogram (middle) and pitch curve (bottom). Spectrogram and pitch curve are generated automatically. 
 
 **vowel_plot_draw.script** draws an F1-F2 formant plot based on values supplied in a spreadsheet.
 
